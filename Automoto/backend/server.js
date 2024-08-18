@@ -8,14 +8,31 @@ const Category = require('./models/CategoryModel');
 const Tag = require('./models/TagModel');
 const Subcomment = require('./models/SubcommentModel');
 const Like = require('./models/LikeModel');
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/UserRoutes');
+const categoryRoutes = require('./routes/CategoryRoutes');
+const articleRoutes = require('./routes/ArticleRoutes');
+const roleRoutes = require('./routes/RoleRoutes');
+const commentRoutes = require('./routes/CommentRoutes');
+const tagRoutes = require('./routes/TagRoutes');
+const subcommentRoutes = require('./routes/SubcommentRoutes');
+const likeRoutes = require('./routes/LikeRoutes');
+
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// Mount the routes
 app.use('/users', userRoutes);
+app.use('/categories', categoryRoutes); 
+app.use('/articles', articleRoutes); 
+app.use('/roles', roleRoutes);
+app.use('/comments', commentRoutes);
+app.use('/tags', tagRoutes);
+app.use('/subcomments', subcommentRoutes);
+app.use('/likes', likeRoutes);
 
 // Sync the database
 db.sequelize.sync()
@@ -35,6 +52,8 @@ app.get('/', async (req, res) => {
         res.status(500).send('Error');
     }
 });
+
+
 
 // Start the server
 app.listen(port, () => {

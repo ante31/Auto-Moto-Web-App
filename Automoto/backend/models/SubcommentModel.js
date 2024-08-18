@@ -10,7 +10,7 @@ const Subcomment = db.sequelize.define('Subcomment', {
         defaultValue: DataTypes.UUIDV4,
     },
     content: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     user_id: {

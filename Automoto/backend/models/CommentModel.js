@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
 const User = require('./UserModel');
+const Article = require('./ArticleModel');
 
 const Comment = db.sequelize.define('Comment', {
     id: {
@@ -18,6 +19,14 @@ const Comment = db.sequelize.define('Comment', {
         defaultValue: DataTypes.UUIDV4,
         references: {
             model: User,
+            key: 'id',
+        },
+    },
+    article_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: Article,
             key: 'id',
         },
     },
